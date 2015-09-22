@@ -1,0 +1,7 @@
+{
+  "name": "ThinkTank",
+  "description": "The next online think tank",
+  "dependencies": {
+    "express": "^4.2.0"
+  }
+}

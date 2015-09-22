@@ -1,0 +1,30 @@
+<html>
+<body>
+	<!-- using controller-as syntax, refer to HomeCtrl with ctrl.
+	ctrl.cars == this.cars in HomeCtrl.js etc-->
+	<div ng-controller = "HomeCtrl as ctrl">
+
+		<!-- using grid system to have 'Think Tank' and sign in/out buttons on same row-->
+		<div class = "row">
+			<div class = "col-sm-4"> </div>
+			<div class = "col-sm-4"> 
+				<h1 class = "text-center" > Think Tank</h1>
+			</div>
+			<div class = "col-sm-4"> 
+				<button class="btn btn-default pull-right" type="submit">Sign In</button>
+				<button class="btn btn-default pull-right" type="submit">Sign Up</button>
+			</div>
+		</div>
+
+		<!-- show all of the current debates as links-->
+    	<div ng-repeat="debate in ctrl.debates">
+    		<p class = "text-center"><a href="{{debate.url}}">{{debate.title}}</a><p>
+    	</div>
+
+    	<br> <br>
+    	<!-- Reposition this using actual css, get rid of <br>s-->
+		<button class="btn btn-default center-block" type="submit">Create Debate</button>
+	
+	</div>
+</body>
+</html>
