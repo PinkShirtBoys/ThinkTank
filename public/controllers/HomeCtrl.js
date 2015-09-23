@@ -24,4 +24,14 @@ myApp.controller('HomeCtrl',[ 'ngDialog',function(ngDialog){
 		});
 	}
 
+	// opens up a dialog for the user to enter his information to register
+	// further logic is held in SignUpDialogCtrl.
+	this.signUp = function() {
+		ngDialog.open({
+			template: '../views/SignUpDialog.html',
+			className: 'ngdialog-theme-plain',
+			controllerAs: 'SignUpDialogCtrl'
+		})
+	}
+
 }]);
