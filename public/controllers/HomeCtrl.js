@@ -1,15 +1,27 @@
 var myApp = angular.module('myApp');
-myApp.controller('HomeCtrl',[function(){
-	console.log("In Home Ctrl");
+myApp.controller('HomeCtrl',[ 'ngDialog',function(ngDialog){
 	// Debates are hardcoded right now
 	// TODO : get Debates from Parse
-	this.debates = [{
-		title : "A",
-		url : "www.thinkportal.com/debates/a"
-	},
-	{
-		title : "B",
-		url : "www.thinkportal.com/debates/b"
-	}
+	this.debates = [
+		{
+			title : "A",
+			url : "www.thinkportal.com/debates/a"
+		},
+
+		{
+			title : "B",
+			url : "www.thinkportal.com/debates/b"
+		}
 	];
+	
+	// opens up a dialog for the user to enter his username + password
+	// further logic is held in SignInDialogCtrl.
+	this.signIn = function() {
+		ngDialog.open({ 
+			template: '../views/signInDialog.html',
+		    className: 'ngdialog-theme-plain',
+		    controllerAs : 'SignInDialogCtrl'
+		});
+	}
+
 }]);
