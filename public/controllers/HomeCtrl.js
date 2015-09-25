@@ -4,13 +4,13 @@ myApp.controller('HomeCtrl',[ 'ngDialog',function(ngDialog){
 	// TODO : get Debates from Parse
 	this.debates = [
 		{
-			title : "A",
-			url : "www.thinkportal.com/debates/a"
+			title : "1",
+			url : "#/Debate/1"
 		},
 
 		{
-			title : "B",
-			url : "www.thinkportal.com/debates/b"
+			title : "2",
+			url : "#/Debate/2"
 		}
 	];
 	

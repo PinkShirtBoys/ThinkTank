@@ -1,0 +1,83 @@
+<html>
+<body>
+	<div ng-controller = "DebateCtrl as ctrl">
+		<md-content class="md-padding">
+
+		<!-- TODO : Make row number dynamic 
+		ctrl will have to hold a value for how many rows there are and update view appropriately-->
+
+		<!-- using grid system to have Debate Title in center and sign in + sign up buttons on side -->
+		<div class = "row">
+			<div class = "col-sm-4"> </div>
+			<div class = "col-sm-4"> 
+				<h1 class = "text-center" > {{ctrl.debateModel.title}}</h1>
+			</div>
+			<div class = "col-sm-4"> 
+				<!-- there might be a better solution than bringing in the HomeCtrl - could be a larger outside view -->
+				<div ng-controller = "HomeCtrl as home" >
+					<button ng-click = "home.signIn()" class="btn btn-default pull-right" type="submit">Sign In</button>
+					<button ng-click = "home.signUp()" class="btn btn-default pull-right" type="submit">Sign Up</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- row with cards that state for and against -->
+		<div class = "row" >
+			<!-- For Card -->
+			<div class = "col-sm-6">
+				<md-card>
+			      <md-card-content>
+			        <h2 class="md-title text-center"> For</h2>
+			      </md-card-content>
+			    </md-card>
+			</div>
+			<!-- Against Card -->
+			<div class = "col-sm-6">
+				<md-card>
+			      <md-card-content>
+			        <h2 class="md-title text-center"> Against </h2>
+			      </md-card-content>
+			    </md-card>
+			</div>
+		</div>
+
+		<!-- each row will have 2 cards -->
+		<div class = "row">
+			<div class = "col-sm-6"> 
+			    <md-card>
+			      <md-card-content>
+			        <h2 class="md-title">{{ctrl.debateModel.forArg.title}}</h2>
+			        <p>
+			        	{{ctrl.debateModel.forArg.discussion}}
+			        </p>
+			      </md-card-content>
+			      <div class="md-actions" layout="row" layout-align="end center">
+			        <md-button>
+			    		<i class="material-icons">thumb_up</i>
+					</md-button>
+			      </div>
+			    </md-card>
+		    </div>
+
+		    <div class = "col-sm-6"> 
+			    <md-card>
+			      <md-card-content>
+			        <h2 class="md-title">{{ctrl.debateModel.againstArg.title}}</h2>
+			        <p>
+			        	{{ctrl.debateModel.againstArg.discussion}}
+			        </p>
+			      </md-card-content>
+			      <div class="md-actions" layout="row" layout-align="end center">
+			        <md-button>
+			    		<i class="material-icons">thumb_up</i>
+			    	</md-button>
+			      </div>
+			    </md-card>
+		    </div>
+
+		</div>
+
+  		</md-content>
+	</div>
+</body>
+</html>
