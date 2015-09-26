@@ -15,9 +15,26 @@
 
 <body>
 
-	<div ng-view>
-        <!-- need ng-view directive for router to work and display views -->
-	</div>
+	<div class="row">
+
+		<div class="col-md-10">
+			<div ng-view>
+        		<!-- need ng-view directive for router to work and display views -->
+        	</div>
+		</div>
+
+		<!-- 	
+			This side view will hold elements that we want to always be open such as account sign in /sign up 
+			This reduces code repition and follows standard SPA design. 
+		-->
+	    <div class="col-md-2">
+	    	<div ng-controller = "SideCtrl as ctrl">
+	    		<button ng-click = "ctrl.signIn()" class="btn btn-default center-block" type="submit">Sign In</button>
+				<button ng-click = "ctrl.signUp()" class="btn btn-default center-block" type="submit">Sign Up</button>
+	    	</div>
+	    </div>    
+	<div>
+
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
@@ -35,6 +52,7 @@
 	<script src = "controllers/SignInDialogCtrl.js"> </script>
 	<script src = "controllers/SignUpDialogCtrl.js"> </script>
 	<script src = "controllers/DebateCtrl.js"> </script>
+	<script src = "controllers/SideCtrl.js"> </script>
 	
 </body>
 </html>

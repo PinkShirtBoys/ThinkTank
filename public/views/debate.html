@@ -6,21 +6,7 @@
 		<!-- TODO : Make row number dynamic 
 		ctrl will have to hold a value for how many rows there are and update view appropriately-->
 
-		<!-- using grid system to have Debate Title in center and sign in + sign up buttons on side -->
-		<div class = "row">
-			<div class = "col-sm-4"> </div>
-			<div class = "col-sm-4"> 
-				<h1 class = "text-center" > {{ctrl.debateModel.title}}</h1>
-			</div>
-			<div class = "col-sm-4"> 
-				<!-- there might be a better solution than bringing in the HomeCtrl - could be a larger outside view -->
-				<div ng-controller = "HomeCtrl as home" >
-					<button ng-click = "home.signIn()" class="btn btn-default pull-right" type="submit">Sign In</button>
-					<button ng-click = "home.signUp()" class="btn btn-default pull-right" type="submit">Sign Up</button>
-				</div>
-			</div>
-		</div>
-
+		<h1 class = "text-center" > {{ctrl.debateModel.title}}</h1>
 		<!-- row with cards that state for and against -->
 		<div class = "row" >
 			<!-- For Card -->
