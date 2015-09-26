@@ -15,7 +15,7 @@ myApp.controller('SideCtrl',['ngDialog', function(ngDialog){
 	// further logic is held in SignUpDialogCtrl.
 	this.signUp = function() {
 		ngDialog.open({
-			template: '../views/SignUpDialog.html',
+			template: '../views/signUpDialog.html',
 			className: 'ngdialog-theme-plain',
 			controllerAs: 'SignUpDialogCtrl'
 		})
