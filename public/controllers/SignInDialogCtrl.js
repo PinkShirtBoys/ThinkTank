@@ -11,6 +11,8 @@ myApp.controller('SignInDialogCtrl',['ngDialog',function(ngDialog){
 
 		Parse.User.logIn(this.model.username, this.model.password).then(function(user){
 			console.log("User logged in");
+			
+
 		}, function(error) {
 			console.log("Error logging in");
 
