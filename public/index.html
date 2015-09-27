@@ -31,8 +31,19 @@
 		-->
 	    <div class="col-md-2">
 	    	<div ng-controller = "SideCtrl as ctrl">
-	    		<button ng-click = "ctrl.signIn()" class="btn btn-default center-block" type="submit">Sign In</button>
-				<button ng-click = "ctrl.signUp()" class="btn btn-default center-block" type="submit">Sign Up</button>
+	    		<!-- $root.currentUser will hold the current user that Parse recognizes -->
+	    		<!-- if $root.currentUser is null, then it means no one is logged in, show sign in/up buttons -->
+	    		<div ng-hide = "$root.currentUser">
+		    		<button ng-click = "ctrl.signIn()" class="btn btn-default center-block" type="submit">Sign In</button>
+					<button ng-click = "ctrl.signUp()" class="btn btn-default center-block" type="submit">Sign Up</button>
+	    		</div>
+
+	    		<!-- if $root.currentNull is not null, then someone is logged in, show sign out button -->
+	    		<div ng-show = "$root.currentUser">
+	    			<p class = "text-center"> Hello: {{$root.currentUser.attributes.username}} </p>
+					<button ng-click = "ctrl.signOut()" class ="btn btn-default center-block" type="submit">Sign Out </button>
+	    		</div>
+
 	    	</div>
 	    </div>    
 	<div>
