@@ -1,4 +1,5 @@
 <html ng-app = 'myApp'>
+
 <!-- PARSE -->
 <script src="//www.parsecdn.com/js/parse-1.6.2.min.js"></script>
 <!-- bootstrap-->
@@ -42,17 +43,19 @@
 	    		<div ng-show = "$root.currentUser">
 	    			<p class = "text-center"> Hello: {{$root.currentUser.attributes.username}} </p>
 					<button ng-click = "ctrl.signOut()" class ="btn btn-default center-block" type="submit">Sign Out </button>
+
+				<!-- Reposition this using actual css, get rid of <br>s -->
+				<br><br><br><br><br><br><br>
+				<button ng-click = "ctrl.createDebate()" class="btn btn-default center-block" type="submit">Create Debate</button>
+
 	    		</div>
 
 	    	</div>
 	    </div>    
 	<div>
-
-	
+	<!-- Angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
-    <script src = "app.js"> </script>
-
     <!-- ngDialog dependencies -->
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.4.0/js/ngDialog.min.js"></script>
 	<!-- Angular-Material dependencies-->
@@ -60,12 +63,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
 
+    <!-- Modules -->
+    <script src = "app.js"> </script>
+
 	<!-- Controllers -->
 	<script src = "controllers/HomeCtrl.js"> </script>
 	<script src = "controllers/SignInDialogCtrl.js"> </script>
 	<script src = "controllers/SignUpDialogCtrl.js"> </script>
 	<script src = "controllers/DebateCtrl.js"> </script>
 	<script src = "controllers/SideCtrl.js"> </script>
+	<script src = "controllers/CreateDebateDialogCtrl.js"> </script>
 	
 </body>
 </html>

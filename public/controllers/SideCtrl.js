@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp');
+//var myApp = angular.module('myApp');
 myApp.controller('SideCtrl',['ngDialog','$rootScope','$timeout', function(ngDialog, $rootScope, $timeout){
 
 	// opens up a dialog for the user to enter his username + password
@@ -38,6 +38,14 @@ myApp.controller('SideCtrl',['ngDialog','$rootScope','$timeout', function(ngDial
 				console.log("error logging out");
 			}
 		);
+	}
+
+	this.createDebate = function() {
+		ngDialog.open({
+			template: '../views/createDebateDialog.html',
+			className: 'ngdialog-theme-plain',
+			controllerAs: 'CreateDebateDialogCtrl'
+		})
 	}
 
 }]);

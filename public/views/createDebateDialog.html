@@ -1,0 +1,35 @@
+<html>
+
+<div ng-controller = "CreateDebateDialogCtrl as ctrl">
+	<form role="form">
+
+		<!-- title -->
+		<div class="form-group">
+			<input type="text" class="form-control" id="title" placeholder = 'Debate Title' ng-model ="ctrl.model.title">
+		</div>
+
+		<!-- description -->
+		<div class="form-group">
+  			<textarea class="form-control" rows="5" id="description" placeholder = 'Debate Description' ng-model = "ctrl.model.description"></textarea>
+		</div>
+
+		<!-- opponent -->
+		<div class="form-group">
+			<input type="text" class="form-control" id="title" placeholder = 'Choose Opponent' ng-model ="ctrl.model.opponent">
+		</div>
+
+		<!-- side -->
+		<div class = "form-group">
+			<input type="radio" class = "radio-inline"ng-model="ctrl.model.side" value = "For"> For </input>
+			<input type="radio" class = "radio-inline" ng-model="ctrl.model.side" value = "Against"> Against </input>
+		</div>
+		<!-- TODOs : 
+		* Form currently can not be submitted with enter key if the last element in a form is a set of radio buttons.
+		* Find an alternative to plain radio-buttons
+		-->
+		
+		<button ng-click ="ctrl.createDebate()" type="submit" class="btn btn-default center-block">Submit</button>
+	</form>
+</div>
+
+</html>
