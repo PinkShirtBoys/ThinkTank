@@ -21,37 +21,20 @@
 	<div class="row">
 
 		<div class="col-md-10">
+
 			<div ng-view>
-        		<!-- need ng-view directive for router to work and display views -->
+				<!-- 
+					This will be the placeholder for main views. 
+					Views such as Home, Debate, etc will be placed here
+					Views in ng-view directive will be displayed appropriately by the router.
+				-->
         	</div>
 		</div>
 
-		<!-- 	
-			This side view will hold elements that we want to always be open such as account sign in /sign up 
-			This reduces code repition and follows standard SPA design. 
-		-->
-	    <div class="col-md-2">
-	    	<div ng-controller = "SideCtrl as ctrl">
-	    		<!-- $root.currentUser will hold the current user that Parse recognizes -->
-	    		<!-- if $root.currentUser is null, then it means no one is logged in, show sign in/up buttons -->
-	    		<div ng-hide = "$root.currentUser">
-		    		<button ng-click = "ctrl.signIn()" class="btn btn-default center-block" type="submit">Sign In</button>
-					<button ng-click = "ctrl.signUp()" class="btn btn-default center-block" type="submit">Sign Up</button>
-	    		</div>
-
-	    		<!-- if $root.currentNull is not null, then someone is logged in, show sign out button -->
-	    		<div ng-show = "$root.currentUser">
-	    			<p class = "text-center"> Hello: {{$root.currentUser.attributes.username}} </p>
-					<button ng-click = "ctrl.signOut()" class ="btn btn-default center-block" type="submit">Sign Out </button>
-
-				<!-- Reposition this using actual css, get rid of <br>s -->
-				<br><br><br><br><br><br><br>
-				<button ng-click = "ctrl.createDebate()" class="btn btn-default center-block" type="submit">Create Debate</button>
-
-	    		</div>
-
-	    	</div>
+	    <div class="col-md-2" ng-include = "'views/side.html'"> 
+	    	<!-- Side.html will contain view for User specific actions such as sign in/out/up + create debate -->
 	    </div>    
+
 	<div>
 	<!-- Angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
