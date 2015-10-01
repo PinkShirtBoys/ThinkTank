@@ -1,0 +1,41 @@
+<html>
+<body >
+  <div ng-controller = "SideNavCtrl as sideNav">
+
+  <md-sidenav class="site-sidenav md-sidenav-right md-whiteframe-z2 centered"
+    md-component-id="right" 
+    md-is-locked-open="$mdMedia('gt-sm')">
+  
+    <md-toolbar class="md-whiteframe-z1">  
+      <!-- $root.currentUser will hold the current user that Parse recognizes -->
+      <!-- if $root.currentUser is null, then it means no one is logged in -->
+      <!-- display profile picture and username only once user is logged in -->
+      <div ng-show = "$root.currentUser">
+        <md-icon md-svg-icon="profile" class = "avatar"></md-icon>
+        <p class = "text-center"> Hello {{$root.currentUser.attributes.username}} </p>
+      </div>
+
+    </md-toolbar>
+
+    <md-content layout-padding >
+      <!-- Display sign in/up options when user is signed out -->
+      <div ng-hide = "$root.currentUser">
+        <button ng-click = "sideNav.signIn()" class="btn btn-default" type="submit">Sign In</button>
+        <br> <br>
+        <button ng-click = "sideNav.signUp()" class="btn btn-default" type="submit">Sign Up</button>
+      </div>
+
+      <!-- Display sign out + create debate options when user is signed in -->
+      <div ng-show = "$root.currentUser">
+        <button ng-click = "sideNav.signOut()" class ="btn btn-default " type="submit">Sign Out </button> 
+        <br> <br>
+        <button ng-click = "sideNav.createDebate()" class="btn btn-default" type="submit">Create Debate</button>
+      </div>       
+
+    </md-content>
+
+  </md-sidenav>
+
+</div>
+<body>
+</html>

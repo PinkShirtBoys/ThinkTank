@@ -1,0 +1,19 @@
+<html>
+<body>
+	<md-toolbar layout="row" class="md-whiteframe-z1" ng-controller = "ToolbarCtrl as toolbar">
+
+		<!-- click logo to go back to home view -->
+		<md-button aria-label = "logo"  ng-click = "toolbar.goToHomeView()">
+			<md-icon md-svg-icon="logo"></md-icon>
+		</md-button>
+
+		<h1> Think Tank </h1>
+
+		<!-- toggleList when the browser is size small -->
+		<md-button class="menu" hide-gt-sm ng-click="toolbar.toggleList()" aria-label="Show side panel">
+			<md-icon md-svg-icon="menu"></md-icon>
+		</md-button>
+
+</md-toolbar>
+</body>
+</html>

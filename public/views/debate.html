@@ -1,67 +1,63 @@
 <html>
 <body>
 	<div ng-controller = "DebateCtrl as ctrl">
+
 		<md-content class="md-padding">
 
-		<!-- TODO : Make row number dynamic 
-		ctrl will have to hold a value for how many rows there are and update view appropriately-->
+			<h2 class="md-title text-center">{{ctrl.debateModel.title}}</h2>
 
-		<h1 class = "text-center" > {{ctrl.debateModel.title}}</h1>
-		<!-- row with cards that state for and against -->
-		<div class = "row" >
-			<!-- For Card -->
-			<div class = "col-sm-6">
-				<md-card>
-			      <md-card-content>
-			        <h2 class="md-title text-center"> For</h2>
-			      </md-card-content>
-			    </md-card>
+			<!-- For and Against cards are flexed against each other in one row-->
+			<!-- the cards that show arguments will have to can be dynamic using ng-repeat -->
+			<div layout = "row">
+
+				<!-- all cards for FOR side -->
+				<div flex>
+					<!-- general FOR card -->
+					<md-card>
+						<h2 class = "md-title text-center"> For </h2>
+					</md-card>
+
+					<!-- One argument for FOR card -->
+					<md-card>
+			      		<md-card-content>
+			        		<h2 class="md-title">{{ctrl.debateModel.forArg.title}}</h2>
+			        		<p>
+			        			{{ctrl.debateModel.forArg.discussion}}
+			        		</p>
+			      		</md-card-content>
+			      		<div class="md-actions" layout="row" layout-align="end center">
+			        		<md-button>
+			    				<i class="material-icons">thumb_up</i>
+							</md-button>
+			      		</div>
+			    	</md-card>
+
+	  			</div>
+
+				<!-- all cards for Against side -->
+	  			<div flex >
+	  				<!-- general Against card -->
+	  				<md-card>
+	    				<h2 class = "md-title text-center"> Against </h2>
+	    			</md-card>
+
+	    			<!-- One argument for Against card -->
+	    			<md-card>
+			      		<md-card-content>
+			        		<h2 class="md-title">{{ctrl.debateModel.againstArg.title}}</h2>
+			        		<p>
+			        			{{ctrl.debateModel.againstArg.discussion}}
+			        		</p>
+			      		</md-card-content>
+			      		<div class="md-actions" layout="row" layout-align="end center">
+			        		<md-button>
+			    				<i class="material-icons">thumb_up</i>
+							</md-button>
+			      		</div>
+			    	</md-card>
+
+	  			</div>
 			</div>
-			<!-- Against Card -->
-			<div class = "col-sm-6">
-				<md-card>
-			      <md-card-content>
-			        <h2 class="md-title text-center"> Against </h2>
-			      </md-card-content>
-			    </md-card>
-			</div>
-		</div>
-
-		<!-- each row will have 2 cards -->
-		<div class = "row">
-			<div class = "col-sm-6"> 
-			    <md-card>
-			      <md-card-content>
-			        <h2 class="md-title">{{ctrl.debateModel.forArg.title}}</h2>
-			        <p>
-			        	{{ctrl.debateModel.forArg.discussion}}
-			        </p>
-			      </md-card-content>
-			      <div class="md-actions" layout="row" layout-align="end center">
-			        <md-button>
-			    		<i class="material-icons">thumb_up</i>
-					</md-button>
-			      </div>
-			    </md-card>
-		    </div>
-
-		    <div class = "col-sm-6"> 
-			    <md-card>
-			      <md-card-content>
-			        <h2 class="md-title">{{ctrl.debateModel.againstArg.title}}</h2>
-			        <p>
-			        	{{ctrl.debateModel.againstArg.discussion}}
-			        </p>
-			      </md-card-content>
-			      <div class="md-actions" layout="row" layout-align="end center">
-			        <md-button>
-			    		<i class="material-icons">thumb_up</i>
-			    	</md-button>
-			      </div>
-			    </md-card>
-		    </div>
-
-		</div>
 
   		</md-content>
 	</div>

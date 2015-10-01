@@ -1,5 +1,5 @@
-//var myApp = angular.module('myApp');
-myApp.controller('SideCtrl',['ngDialog','$rootScope','$timeout', function(ngDialog, $rootScope, $timeout){
+var myApp = angular.module('myApp');
+myApp.controller('SideNavCtrl',['ngDialog','$rootScope','$timeout','$mdSidenav', function(ngDialog, $rootScope, $timeout,$mdSidenav){
 
 	// opens up a dialog for the user to enter his username + password
 	// further logic is held in SignInDialogCtrl.

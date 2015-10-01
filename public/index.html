@@ -11,31 +11,31 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.css">
 <!-- Google material design Material icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Custom css -->
+<link rel="stylesheet" href="assets/app.css"/>
 
 <head>
 	<title> Think Tank </title>
 </head>
 
-<body>
+<body layout="row">
+	
+	<!-- this column will hold toolbar and main ng-view -->
+  	<div flex layout="column" tabIndex="-1" role = "main" class="md-whiteframe-z2">
+  		<!-- toolbar -->
+  		<div ng-include = "'views/toolbar.html'"> </div>
 
-	<div class="row">
+		<!-- 
+			Placeholder for main views. 
+			Views such as Home, Debate, etc will be placed here
+			Views in ng-view directive will be displayed appropriately by the router.
+		-->
+	    <div ng-view> </div>
+    </div>
 
-		<div class="col-md-10">
+    <!-- sidenav -->
+	<div ng-include = "'views/sidenav.html'"> </div>
 
-			<div ng-view>
-				<!-- 
-					This will be the placeholder for main views. 
-					Views such as Home, Debate, etc will be placed here
-					Views in ng-view directive will be displayed appropriately by the router.
-				-->
-        	</div>
-		</div>
-
-	    <div class="col-md-2" ng-include = "'views/side.html'"> 
-	    	<!-- Side.html will contain view for User specific actions such as sign in/out/up + create debate -->
-	    </div>    
-
-	<div>
 	<!-- Angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
@@ -54,8 +54,9 @@
 	<script src = "controllers/SignInDialogCtrl.js"> </script>
 	<script src = "controllers/SignUpDialogCtrl.js"> </script>
 	<script src = "controllers/DebateCtrl.js"> </script>
-	<script src = "controllers/SideCtrl.js"> </script>
+	<script src = "controllers/SideNavCtrl.js"> </script>
 	<script src = "controllers/CreateDebateDialogCtrl.js"> </script>
+	<script src = "controllers/ToolbarCtrl.js"> </script>
 	
 </body>
 </html>

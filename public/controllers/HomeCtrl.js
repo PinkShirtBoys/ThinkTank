@@ -1,5 +1,6 @@
 var myApp = angular.module('myApp');
-myApp.controller('HomeCtrl',[ 'ngDialog',function(ngDialog){
+myApp.controller('HomeCtrl',[ function(){
+
 	// Debates are hardcoded right now
 	// TODO : get Debates from Parse
 	this.debates = [

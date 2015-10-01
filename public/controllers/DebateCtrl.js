@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp');
 myApp.controller('DebateCtrl',[ function(){
 	
+
 	//TODO : debateModel should be populated by Parse
 
 	// TODO : A more concrete Debate Model
@@ -18,5 +19,5 @@ myApp.controller('DebateCtrl',[ function(){
 			discussion : 'Argument discussion [FOR]'
 		}
 	}
-
+	
 }]);
