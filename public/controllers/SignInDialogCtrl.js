@@ -5,10 +5,10 @@ myApp.controller('SignInDialogCtrl',['ngDialog', '$rootScope', '$timeout',functi
 	this.model = {};
 
 	this.submit = function(){
-		console.log("username : " + this.model.username);
+		console.log("username : " + this.model.email);
 		console.log("password : " + this.model.password);
 
-		Parse.User.logIn(this.model.username, this.model.password).then(function(user){
+		Parse.User.logIn(this.model.email, this.model.password).then(function(user){
 			
 
 			//if user email is not verified; prevent logIn
@@ -19,7 +19,7 @@ myApp.controller('SignInDialogCtrl',['ngDialog', '$rootScope', '$timeout',functi
 			}
 
 			console.log("User logged in");
-			
+
 			// update $rootScope.currentUser
 			// Change is not automatic, so use $apply
 			$rootScope.$apply(function(){
@@ -27,6 +27,7 @@ myApp.controller('SignInDialogCtrl',['ngDialog', '$rootScope', '$timeout',functi
 			});
 		}, function(error) {
 			console.log("Error logging in");
+			console.log(error.message);
 		});
 		
 		ngDialog.closeAll();
