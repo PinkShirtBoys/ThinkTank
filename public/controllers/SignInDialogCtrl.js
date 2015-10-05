@@ -9,7 +9,17 @@ myApp.controller('SignInDialogCtrl',['ngDialog', '$rootScope', '$timeout',functi
 		console.log("password : " + this.model.password);
 
 		Parse.User.logIn(this.model.username, this.model.password).then(function(user){
+			
+
+			//if user email is not verified; prevent logIn
+			if(user.get("emailVerified") == false) {
+				console.log("Email address not verified");
+				Parse.User.logOut();
+				return;
+			}
+
 			console.log("User logged in");
+			
 			// update $rootScope.currentUser
 			// Change is not automatic, so use $apply
 			$rootScope.$apply(function(){
