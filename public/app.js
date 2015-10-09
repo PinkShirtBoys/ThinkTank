@@ -5,7 +5,10 @@ var myApp = angular.module('myApp',['ngRoute','ngMaterial','ngDialog'])
 
 });
 
-Parse.initialize("sb60iaVk7DTr9g3JZ0zfpqLIlK8lM2s6WVzbPaED", "lWOfrM6Son29gBIZ84kaPwvNmXJY1klvMc4oFc3J");
+// ParseCredentials found in config.js
+// ParseCredentials will only be used in app.js
+// If ParseCredentials must be used in mulitple places, put ParseCredentials in a myApp.constant()
+Parse.initialize(ParseCredentials.applicationId, ParseCredentials.javascriptKey);
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
