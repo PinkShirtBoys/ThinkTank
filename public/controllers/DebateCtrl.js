@@ -19,5 +19,11 @@ myApp.controller('DebateCtrl',[ function(){
 			discussion : 'Argument discussion [FOR]'
 		}
 	}
+
+	// Let the Current User join this debate
+	// TODO : Call appropriate function from a Debate or User service
+	this.join = function() {
+		console.log("will join the debate ....");
+	}
 	
 }]);

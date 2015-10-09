@@ -1,10 +1,19 @@
 <html>
 <body>
-	<div ng-controller = "DebateCtrl as ctrl">
+	<div ng-controller = "DebateCtrl as debate">
 
 		<md-content class="md-padding">
 
-			<h2 class="md-title text-center">{{ctrl.debateModel.title}}</h2>
+			<!-- show the join button only if the user is logged in -->
+			<!-- An alternative is to show the join button regardless of user status, but if not logged in, prompt the user to log in or create an account-->
+			<!-- TODO : add condition where debate currently has 2 debators
+				in this case we don't want to show the button 
+				ex) ng-show = "$root.currentUser && debate.debateHasRoom() etc -->
+			<div ng-show = "$root.currentUser">
+				<md-button ng-click = "debate.join()" class="btn btn-default" type="submit">Join</button>
+			</div>
+
+			<h2 class="md-title text-center">{{debate.debateModel.title}}</h2>
 
 			<!-- For and Against cards are flexed against each other in one row-->
 			<!-- the cards that show arguments will have to can be dynamic using ng-repeat -->
@@ -20,9 +29,9 @@
 					<!-- One argument for FOR card -->
 					<md-card>
 			      		<md-card-content>
-			        		<h2 class="md-title">{{ctrl.debateModel.forArg.title}}</h2>
+			        		<h2 class="md-title">{{debate.debateModel.forArg.title}}</h2>
 			        		<p>
-			        			{{ctrl.debateModel.forArg.discussion}}
+			        			{{debate.debateModel.forArg.discussion}}
 			        		</p>
 			      		</md-card-content>
 			      		<div class="md-actions" layout="row" layout-align="end center">
@@ -44,9 +53,9 @@
 	    			<!-- One argument for Against card -->
 	    			<md-card>
 			      		<md-card-content>
-			        		<h2 class="md-title">{{ctrl.debateModel.againstArg.title}}</h2>
+			        		<h2 class="md-title">{{debate.debateModel.againstArg.title}}</h2>
 			        		<p>
-			        			{{ctrl.debateModel.againstArg.discussion}}
+			        			{{debate.debateModel.againstArg.discussion}}
 			        		</p>
 			      		</md-card-content>
 			      		<div class="md-actions" layout="row" layout-align="end center">
