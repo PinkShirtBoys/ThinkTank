@@ -5,9 +5,11 @@
 		<h2 class="md-title text-center">Debates</h2>
 
 		<!-- show all of the current debates as links-->
-		<div ng-repeat="debate in ctrl.debates">
+		<!-- currently debates is on $scope -->
+		<div ng-repeat="debate in debates">
 			<p class = "text-center"><a href="{{debate.url}}">{{debate.title}}</a><p>
 		</div>
+
 	</div>	
 </body>
 </html>

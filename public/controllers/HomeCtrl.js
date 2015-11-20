@@ -1,18 +1,15 @@
 var myApp = angular.module('myApp');
-myApp.controller('HomeCtrl',[ function(){
+myApp.controller('HomeCtrl',[ 'DebateService', '$scope',function(DebateService, $scope){
 
-	// Debates are hardcoded right now
-	// TODO : get Debates from Parse
-	this.debates = [
-		{
-			title : "1",
-			url : "#/Debate/1"
-		},
-
-		{
-			title : "2",
-			url : "#/Debate/2"
+	// get all debates from Parse
+	// currently using $scope.debates
+	// TODO : find a way to use this.debates
+	DebateService.getDebates()
+		.then(function(results){
+			$scope.$apply(function() {
+				$scope.debates = results;
+			})
 		}
-	];
+	);
 
 }]);

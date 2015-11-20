@@ -2,8 +2,31 @@ var myApp = angular.module('myApp');
 
 myApp.service('DebateService', function(){
 
+// gets all debates
+this.getDebates = function() {
+    // extend Debate class
+    var Debate = Parse.Object.extend("Debate");
+    // create a new query to get all Debate objects
+    var query = new Parse.Query(Debate);
+
+    // TODO: create an error callback? 
+    // gets all debates. May need to have a query.limit() set in future
+    return query.find().then(function(debates){
+      var array = [];
+      debates.forEach(function(debate){
+        array.push({
+          title : debate.get("title"),
+          url : "#/Debate/" + debate.get("title")
+        })
+      });
+      return array;
+      // return debates;
+    });
+    return this;
+  }
+  
   // creates a debate with debate model from CreateDebateDialogCtrl
-  this.createDebate = function(debate) {
+this.createDebate = function(debate) {
     // extend Debate class
     var Debate = Parse.Object.extend("Debate");
     // Initialize a new Debate object and assign all relevant fields
