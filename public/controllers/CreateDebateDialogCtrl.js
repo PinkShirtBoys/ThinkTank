@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp');
-myApp.controller('CreateDebateDialogCtrl',['ngDialog','DebateService',function(ngDialog,DebateService){
+myApp.controller('CreateDebateDialogCtrl',['ngDialog','DebateService''$location',function(ngDialog,DebateService,$location){
 
-	// this model holds the essentials to create a debate
+	// this model holds fields needed to create a Debate
 	this.model = {
 		title : "",
 		description: "",
@@ -9,11 +9,11 @@ myApp.controller('CreateDebateDialogCtrl',['ngDialog','DebateService',function(n
 		side : "" // side can be "Against" or "For"
 	}
 
-	// needs a call to Parse
 	this.createDebate = function() {
-		// console.log(this.model);
 		DebateService.createDebate(this.model);
 		ngDialog.closeAll();
+		// go to this Debate's view. 
+		$location.url('/Debate/' + title);
 	}
 
 }]);
