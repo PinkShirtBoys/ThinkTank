@@ -1,6 +1,6 @@
 <html>
 <body>
-	<div ng-controller = "DebateCtrl as debate">
+	<div ng-controller = "DebateCtrl">
 
 		<md-content class="md-padding">
 
@@ -13,7 +13,7 @@
 				<md-button ng-click = "debate.join()" class="btn btn-default" type="submit">Join</button>
 			</div>
 
-			<h2 class="md-title text-center">{{debate.debateModel.title}}</h2>
+			<h2 class="md-title text-center">{{debateModel.title}}</h2>
 
 			<!-- For and Against cards are flexed against each other in one row-->
 			<!-- the cards that show arguments will have to can be dynamic using ng-repeat -->
@@ -29,9 +29,9 @@
 					<!-- One argument for FOR card -->
 					<md-card>
 			      		<md-card-content>
-			        		<h2 class="md-title">{{debate.debateModel.forArg.title}}</h2>
+			        		<h2 class="md-title">{{debateModel.forArg.title}}</h2>
 			        		<p>
-			        			{{debate.debateModel.forArg.discussion}}
+			        			{{debateModel.forArg.discussion}}
 			        		</p>
 			      		</md-card-content>
 			      		<div class="md-actions" layout="row" layout-align="end center">
@@ -53,9 +53,9 @@
 	    			<!-- One argument for Against card -->
 	    			<md-card>
 			      		<md-card-content>
-			        		<h2 class="md-title">{{debate.debateModel.againstArg.title}}</h2>
+			        		<h2 class="md-title">{{debateModel.againstArg.title}}</h2>
 			        		<p>
-			        			{{debate.debateModel.againstArg.discussion}}
+			        			{{debateModel.againstArg.discussion}}
 			        		</p>
 			      		</md-card-content>
 			      		<div class="md-actions" layout="row" layout-align="end center">

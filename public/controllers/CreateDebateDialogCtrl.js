@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp');
-myApp.controller('CreateDebateDialogCtrl',['ngDialog','DebateService''$location',function(ngDialog,DebateService,$location){
+myApp.controller('CreateDebateDialogCtrl',['ngDialog','DebateService','$location',function(ngDialog,DebateService,$location){
 
 	// this model holds fields needed to create a Debate
 	this.model = {

@@ -2,6 +2,22 @@ var myApp = angular.module('myApp');
 
 myApp.service('DebateService', function(){
 
+// gets a debate by title. 
+// Called in DebateCtrl
+this.getDebateByTitle = function(title) {
+  // extend Debate class
+  var Debate = Parse.Object.extend("Debate");
+  // create a new query to get all Debate objects
+  var query = new Parse.Query(Debate);
+  // Find a debate with title field equal to the given title
+  query.equalTo("title", title);
+  return query.find().then(function(debate){
+    return debate[0];
+  });
+  return this;    
+}
+
+
 // gets all debates
 this.getDebates = function() {
     // extend Debate class
@@ -51,6 +67,7 @@ this.createDebate = function(debate) {
       //success and error callbacks
       success: function(_debate) {
         console.log('New debate created with objectId: ' + _debate.id);
+        return _debate.id;
       },
       error: function(_debate, error) {
         console.log(error.message);
