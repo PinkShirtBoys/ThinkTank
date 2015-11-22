@@ -4,31 +4,34 @@
 	<form role="form">
 
 		<!-- title -->
-		<div class="form-group">
-			<input type="text" class="form-control" id="title" placeholder = 'Debate Title' ng-model ="ctrl.model.title">
-		</div>
+		<md-input-container>
+  			<label> Title </label>
+  			<input type="text" id ="title" ng-model = "ctrl.model.title">
+		</md-input-container>
 
 		<!-- description -->
-		<div class="form-group">
-  			<textarea class="form-control" rows="5" id="description" placeholder = 'Debate Description' ng-model = "ctrl.model.description"></textarea>
-		</div>
+		<md-input-container>
+    		<label>Description</label>
+    		<textarea ng-model = "ctrl.model.description"></textarea>
+  		</md-input-container>
 
-		<!-- opponent -->
-		<div class="form-group">
-			<input type="text" class="form-control" id="title" placeholder = 'Choose Opponent' ng-model ="ctrl.model.opponent">
-		</div>
+		<!-- Opponent -->
+		<md-input-container>
+  			<label> Opponent </label>
+  			<input type="text" id ="opponent" ng-model = "ctrl.model.opponent">
+		</md-input-container>
 
-		<!-- side -->
-		<div class = "form-group">
-			<input type="radio" class = "radio-inline"ng-model="ctrl.model.side" value = "For"> For </input>
-			<input type="radio" class = "radio-inline" ng-model="ctrl.model.side" value = "Against"> Against </input>
-		</div>
-		<!-- TODOs : 
-		* Form currently can not be submitted with enter key if the last element in a form is a set of radio buttons.
-		* Find an alternative to plain radio-buttons
+		<!-- TODO : 
+			* Form currently can not be submitted with enter key if user has last clicked on a radio button. The user would have to click on an input and then be able to press enter to submit. 
+			* Find a way to enable enter to work. 
 		-->
-		
-		<button ng-click ="ctrl.createDebate()" type="submit" class="btn btn-default center-block">Submit</button>
+		<md-radio-group ng-model="ctrl.model.side">
+	      	<md-radio-button value="For" class="md-primary">For</md-radio-button>
+			<md-radio-button value="Against"> Against </md-radio-button>
+    	</md-radio-group>
+
+		<md-button class="md-raised md-primary btn-block" ng-click = "ctrl.createDebate()" >Submit</md-button>
+
 	</form>
 </div>
 

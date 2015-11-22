@@ -20,16 +20,24 @@
     <md-content layout-padding >
       <!-- Display sign in/up options when user is signed out -->
       <div ng-hide = "$root.currentUser">
-        <button ng-click = "sideNav.signIn()" class="btn btn-default" type="submit">Sign In</button>
+
+        <md-button class="md-raised md-primary" ng-click = "sideNav.signIn()" >Sign In</md-button>
+
         <br> <br>
-        <button ng-click = "sideNav.signUp()" class="btn btn-default" type="submit">Sign Up</button>
+
+        <md-button class="md-raised md-primary" ng-click = "sideNav.signUp()" >Sign Up</md-button>
+
       </div>
 
       <!-- Display sign out + create debate options when user is signed in -->
       <div ng-show = "$root.currentUser">
-        <button ng-click = "sideNav.signOut()" class ="btn btn-default " type="submit">Sign Out </button> 
+
+        <md-button class="md-raised md-primary" ng-click = "sideNav.signOut()" >Sign Out</md-button>
+
         <br> <br>
-        <button ng-click = "sideNav.createDebate()" class="btn btn-default" type="submit">Create Debate</button>
+
+        <md-button class="md-raised md-primary" ng-click = "sideNav.createDebate()" >Create Debate</md-button>
+
       </div>       
 
     </md-content>
