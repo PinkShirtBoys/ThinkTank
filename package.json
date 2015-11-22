@@ -2,6 +2,7 @@
   "name": "ThinkTank",
   "description": "The next online think tank",
   "dependencies": {
-    "express": "^4.2.0"
+    "express": "^4.2.0",
+    "parse":"1.6.9"
   }
 }
