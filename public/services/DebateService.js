@@ -1,22 +1,16 @@
 var myApp = angular.module('myApp');
-
 myApp.service('DebateService', function(){
 
-// gets a debate by title. 
-// Called in DebateCtrl
-this.getDebateByTitle = function(title) {
-  // extend Debate class
+// get a debate by Id, called in DebateCtrl
+this.getDebateById = function(id) {
   var Debate = Parse.Object.extend("Debate");
-  // create a new query to get all Debate objects
   var query = new Parse.Query(Debate);
-  // Find a debate with title field equal to the given title
-  query.equalTo("title", title);
+  query.equalTo("objectId", id);
   return query.find().then(function(debate){
     return debate[0];
   });
-  return this;    
+  return this;
 }
-
 
 // gets all debates
 this.getDebates = function() {
@@ -32,7 +26,7 @@ this.getDebates = function() {
       debates.forEach(function(debate){
         array.push({
           title : debate.get("title"),
-          url : "#/Debate/" + debate.get("title")
+          url : "#/Debate/" + debate.id
         })
       });
       return array;
@@ -62,17 +56,18 @@ this.createDebate = function(debate) {
       console.log("ERROR - DebateService received a debate with side : " + debate.side);
     }
 
-    // save this debate
-    _debate.save(null, {
-      //success and error callbacks
-      success: function(_debate) {
+    // save this debate as a promise
+    return _debate.save({}).then(
+      function(object) {
+        // the object was saved.
         console.log('New debate created with objectId: ' + _debate.id);
-        return _debate.id;
+        return _debate;
       },
-      error: function(_debate, error) {
-        console.log(error.message);
-      }
-    })
+      function(error) {
+        // saving the object failed.
+        console.log('New debate created with objectId: ' + _debate.id);
+    });
+    return this;
   }
 
 });

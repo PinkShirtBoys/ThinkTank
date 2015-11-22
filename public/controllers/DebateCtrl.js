@@ -27,13 +27,14 @@ myApp.controller('DebateCtrl',['DebateService', '$routeParams','$scope', functio
 	// Assuming that all titles are unique, find the Debate associated with the title
 	// and display that Debate
 	this.init = function() {
-		var debateTitle = $routeParams.param;
-		DebateService.getDebateByTitle(debateTitle)
+		var debateId = $routeParams.param;
+		console.log("debateId : " + debateId);
+		DebateService.getDebateById(debateId)
 			.then(function(debate){
 				$scope.$apply(function() {
-					// update $scope.debateModel accordingly
-					$scope.debateModel.title = debate.get("title");	
-				})
+					//update $scope.debateModel accordingly
+					$scope.debateModel.title = debate.get("title");
+				});
 			});
 	}
 
