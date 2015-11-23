@@ -6,7 +6,8 @@ myApp.controller('CreateDebateDialogCtrl',['ngDialog','DebateService','$location
 		title : "",
 		description: "",
 		opponent : "",
-		side : "" // side can be "Against" or "For"
+		side : "", // side can be "Against" or "For"
+		turn : "" // Against or For
 	}
 
 	this.createDebate = function() {

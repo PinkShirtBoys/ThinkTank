@@ -1,0 +1,25 @@
+<html>
+<body>
+	<div ng-controller = "PostArgumentCtrl as ctrl">
+
+	<!-- Argument and sources -->
+	<md-input-container>
+		<label>Argument</label>
+		<textarea> </textarea>
+	</md-input-container>
+
+	<md-input-container>
+		<label>Argument Discussion</label>
+		<textarea></textarea>
+	</md-input-container>
+
+	<md-input-container>
+		<label>Sources</label>
+		<textarea></textarea>
+	</md-input-container>
+
+	<md-button class="md-raised md-primary btn-block" ng-click = "ctrl.postArgument()" >Submit</md-button>
+
+	</div>
+</body>
+</html>

@@ -45,11 +45,15 @@ this.createDebate = function(debate) {
     _debate.set("description", debate.description);
     _debate.set("createdBy", Parse.User.current());
     // assign current user to appropriate side of the debate
+    // the turn will be the side of current user because he will
+    // be the one to make the first argument in the debate
     if(debate.side == "For") {
       _debate.set("For", Parse.User.current());
+      _debate.set("turn", "For");
     }
     else if(debate.side == "Against"){
       _debate.set("Against", Parse.User.current());
+      _debate.set("turn", "Against");
     }
     else {
       // TODO add some error message if received side is not Against or For. 

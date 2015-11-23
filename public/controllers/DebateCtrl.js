@@ -5,17 +5,18 @@ myApp.controller('DebateCtrl',['DebateService', '$routeParams','$scope', functio
 	// Debate model will need to have awareness of round
 	// Current debate model holds against arg and for arg
 	// this is a temporary placeholder for values that have not been initialized yet
-	$scope.debateModel = {
-		title : "",
-		againstArg : {
-			title : 'Argument Title [AGAINST]',
-			discussion : 'Argument discussion [AGAINST]'
-		},
-		forArg : {
-			title : 'Argument Title [FOR]',
-			discussion : 'Argument discussion [FOR]'
-		}
-	}
+	// $scope.debate = {
+	// 	turn : "",
+	// 	title : "",
+	// 	againstArg : {
+	// 		title : 'Argument Title [AGAINST]',
+	// 		discussion : 'Argument discussion [AGAINST]'
+	// 	},
+	// 	forArg : {
+	// 		title : 'Argument Title [FOR]',
+	// 		discussion : 'Argument discussion [FOR]'
+	// 	}
+	// }
 
 	// Let the Current User join this debate
 	this.join = function() {
@@ -28,12 +29,10 @@ myApp.controller('DebateCtrl',['DebateService', '$routeParams','$scope', functio
 	// and display that Debate
 	this.init = function() {
 		var debateId = $routeParams.param;
-		console.log("debateId : " + debateId);
 		DebateService.getDebateById(debateId)
 			.then(function(debate){
 				$scope.$apply(function() {
-					//update $scope.debateModel accordingly
-					$scope.debateModel.title = debate.get("title");
+					$scope.debate = debate;
 				});
 			});
 	}
