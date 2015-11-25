@@ -1,12 +1,67 @@
 var myApp = angular.module('myApp');
 myApp.service('DebateService', function(){
 
+var currentDebate = {};
+
+this.getCurrentDebate = function() {
+  console.log(currentDebate);
+  return currentDebate;
+}
+
+// posts argument to current debate
+this.postArgument = function(argument) {
+  // should be in an Argument service
+  var Argument = Parse.Object.extend("Argument");
+  var _argument = new Argument();
+  _argument.set("title", argument.title);
+  _argument.set("description", argument.description);
+  // sources should be an array, but for now is a String in Parse
+  _argument.set("sources", argument.sources);
+
+      // save this argument as a promise
+  return _argument.save({}).then(
+    function(object) {
+      console.log('New argument created with objectId: ' + _argument.id);
+      // The argument is created, now we need to add it to forArgs or againstArgs
+      // If the current user has the For side on the debate, then we add this argument
+      // to forArgs, etc
+      // The For or Against user of a Debate will be undefined on the first round,
+      // so we need to check if they are null before accessing its id
+      var forUser = currentDebate.get("For");
+      var againstUser = currentDebate.get("Against");
+      if(typeof forUser !== 'undefined' &&  Parse.User.current().id == forUser.id){
+          currentDebate.add("forArgs",_argument);
+          currentDebate.set("turn", "Against");
+          currentDebate.save();
+          console.log("added to forArgs and set turn to Against");
+      }
+      else if (typeof againstUser !== 'undefined' && Parse.User.current().id == againstUser.id) {
+        currentDebate.add("againstArgs",_argument);
+        currentDebate.set("turn", "For");
+        currentDebate.save();
+        console.log("added to againstArgs and set turn to For");
+      }
+
+      else {
+        console.log("ERROR -- current debate : " + currentDebate.get("id")
+          +" has For and Against users undefined");
+      }
+      return _argument;
+    },
+    function(error) {
+      // saving the object failed.
+      console.log('New debate created with objectId: ' + _debate.id);
+  });
+  return this;
+}
+
 // get a debate by Id, called in DebateCtrl
 this.getDebateById = function(id) {
   var Debate = Parse.Object.extend("Debate");
   var query = new Parse.Query(Debate);
   query.equalTo("objectId", id);
   return query.find().then(function(debate){
+    currentDebate = debate[0];
     return debate[0];
   });
   return this;

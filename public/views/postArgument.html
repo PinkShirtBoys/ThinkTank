@@ -5,17 +5,17 @@
 	<!-- Argument and sources -->
 	<md-input-container>
 		<label>Argument</label>
-		<textarea> </textarea>
+		<textarea ng-model = "ctrl.argument.title"> </textarea>
 	</md-input-container>
 
 	<md-input-container>
 		<label>Argument Discussion</label>
-		<textarea></textarea>
+		<textarea ng-model = "ctrl.argument.discussion"></textarea>
 	</md-input-container>
 
 	<md-input-container>
 		<label>Sources</label>
-		<textarea></textarea>
+		<textarea ng-model = "ctrl.argument.sources"></textarea>
 	</md-input-container>
 
 	<md-button class="md-raised md-primary btn-block" ng-click = "ctrl.postArgument()" >Submit</md-button>
