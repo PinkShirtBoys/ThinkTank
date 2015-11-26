@@ -6,11 +6,11 @@
 
 			Turn : {{debate.get('turn')}} 
 			<br>
-			Current User Name: {{$root.currentUser.attributes.username}}
+			Current User Id: {{$root.currentUser.id}}
 			<br>
-			For User Name: {{debate.get('For').attributes.username}}
+			For User id: {{debate.get('For').id}}
 			<br>
-			Against User Name : {{debate.get('Against').attributes.username}}
+			Against User id : {{debate.get('Against').id}}
 
 			<h2 class="md-title text-center">{{debate.get('title')}}</h2>
 
@@ -25,7 +25,7 @@
 						<h2 class = "md-title text-center"> For </h2>
 					</md-card>
 
-					<div ng-if = "debate.get('turn') == 'For' && $root.currentUser.attributes.username == debate.get('For').attributes.username">
+					<div ng-if = "debate.get('turn') == 'For' && $root.currentUser.id == debate.get('For').id">
 						<div ng-include src = "'views/postArgument.html'"> </div>
 					</div>
 
@@ -53,7 +53,7 @@
 	    				<h2 class = "md-title text-center"> Against </h2>
 	    			</md-card>
 					
-					<div ng-if = "debate.get('turn') == 'Against' && $root.currentUser.attributes.username == debate.get('Against').attributes.username">
+					<div ng-if = "debate.get('turn') == 'Against' && $root.currentUser.id == debate.get('Against').id">
 						<div ng-include src = "'views/postArgument.html'"> </div>
 					</div>	
 					
