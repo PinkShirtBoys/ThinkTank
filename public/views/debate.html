@@ -1,18 +1,28 @@
 <html>
+	<!-- TODOS :
+		* replace ng-repeat + ng-include with a custom directive for argument.html (performance issues)
+	-->
 <body>
 	<div ng-controller = "DebateCtrl">
 
 		<md-content class="md-padding">
 
-			Turn : {{debate.get('turn')}} 
-			<br>
-			Current User Id: {{$root.currentUser.id}}
-			<br>
-			For User id: {{debate.get('For').id}}
-			<br>
-			Against User id : {{debate.get('Against').id}}
+			<!-- uncomment below to debug -->
+<!-- 			Turn : {{debate.get('turn')}}  <br>
+			Current User Id: {{$root.currentUser.id}} <br>
+			For User id: {{debate.get('For').id}} <br>
+			Against User id : {{debate.get('Against').id}} <br>
+			forArgs : {{debate.get('forArgs')}} <br>
+			againstArgs : {{debate.get('againstArgs')}} <br> -->
+
+
+			<!-- show the join button only if the current user is logged in, debate is not full, and current user does not belong to the debate. -->
+			<div ng-show = "$root.currentUser && (!debate.get('For') || !debate.get('Against')) && ($root.currentUser.id != debate.get('For').id && $root.currentUser.id != debate.get('Against').id)">
+				<md-button ng-click = "join()" class="btn btn-default" type="submit">Join</button>
+			</div>
 
 			<h2 class="md-title text-center">{{debate.get('title')}}</h2>
+			<p class = "text-center"> {{debate.get('description')}} </p>
 
 			<!-- For and Against cards are flexed against each other in one row-->
 			<!-- the cards that show arguments will have to can be dynamic using ng-repeat -->
@@ -25,24 +35,19 @@
 						<h2 class = "md-title text-center"> For </h2>
 					</md-card>
 
-					<div ng-if = "debate.get('turn') == 'For' && $root.currentUser.id == debate.get('For').id">
+					<!-- print all for args and then show postArg view-->
+					<div ng-repeat = "arg in debate.get('forArgs') track by $index">
+						<div ng-include src = "'views/argument.html'"> </div>
+					</div>
+					<!-- postArgument if on For turn, current user is For user and if 
+					there are less than max amount -->
+					<div ng-if ="debate.get('turn') == 'For' && $root.currentUser.id == debate.get('For').id && $root.currentUser.id && (!debate.get('forArgs') || debate.get('forArgs').length < maxArg)">
 						<div ng-include src = "'views/postArgument.html'"> </div>
 					</div>
 
-					<!-- One argument for FOR card -->
-					<!-- <md-card>
-			      		<md-card-content>
-			        		<h2 class="md-title">{{debate.forArg.title}}</h2>
-			        		<p>
-			        			{{debate.forArg.discussion}}
-			        		</p>
-			      		</md-card-content>
-			      		<div class="md-actions" layout="row" layout-align="end center">
-			        		<md-button>
-			    				<i class="material-icons">thumb_up</i>
-							</md-button>
-			      		</div>
-			    	</md-card> -->
+					<div ng-if ="debate.get('forArgs').length == maxArg">
+						Maximum {{maxArg}} arguments
+					</div>
 
 	  			</div>
 
@@ -52,25 +57,20 @@
 	  				<md-card>
 	    				<h2 class = "md-title text-center"> Against </h2>
 	    			</md-card>
-					
-					<div ng-if = "debate.get('turn') == 'Against' && $root.currentUser.id == debate.get('Against').id">
+
+					<!-- print all against args and then show postArg view-->
+					<div ng-repeat = "arg in debate.get('againstArgs') track by $index">
+						<div ng-include src = "'views/argument.html'"> </div>
+					</div>
+					<!-- postArgument if on Against turn, current user is Against user and if 
+					there are less than max amount -->
+					<div ng-if ="debate.get('turn') == 'Against' && $root.currentUser.id == debate.get('Against').id && $root.currentUser.id &&(!debate.get('againstArgs') || debate.get('againstArgs').length < maxArg)">
 						<div ng-include src = "'views/postArgument.html'"> </div>
-					</div>	
-					
-	    			<!-- One argument for Against card -->
-	    			<!-- <md-card>
-			      		<md-card-content>
-			        		<h2 class="md-title">{{debate.againstArg.title}}</h2>
-			        		<p>
-			        			{{debate.againstArg.discussion}}
-			        		</p>
-			      		</md-card-content>
-			      		<div class="md-actions" layout="row" layout-align="end center">
-			        		<md-button>
-			    				<i class="material-icons">thumb_up</i>
-							</md-button>
-			      		</div>
-			    	</md-card> -->
+					</div>
+
+					<div ng-if ="debate.get('againstArgs').length == maxArg">
+						Maximum {{maxArg}} arguments
+					</div>
 
 	  			</div>
 			</div>

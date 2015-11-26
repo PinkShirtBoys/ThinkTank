@@ -1,0 +1,19 @@
+<html>
+<body>
+	<div ng-controller = "ArgumentCtrl">
+		<!-- arg comes from ng-repeat on debate.html -->
+		<md-card>
+			<md-card-content>
+				<h2 class="md-title">{{arg.get('title')}}</h2>	
+				<p> {{arg.get('discussion')}} </p>
+				<p> {{arg.get('sources')}} </p>
+			</md-card-content>
+			<div class="md-actions" layout="row" layout-align="end center">
+        		<md-button>
+    				<i class="material-icons">thumb_up</i>
+				</md-button>
+      		</div>
+		</md-card>
+	</div>
+</body>
+</html>

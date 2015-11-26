@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp');
-myApp.service('DebateService', function(){
+myApp.service('DebateService',function(){
 
 var currentDebate = {};
 
@@ -8,13 +8,44 @@ this.getCurrentDebate = function() {
   return currentDebate;
 }
 
+// add current user to the debate
+// current user will be set to For or Against
+// assumes that UI will not let a current debator click the join button
+this.joinDebate = function() {  
+  console.log(currentDebate);
+  var forUser = currentDebate.get("For");
+  var againstUser = currentDebate.get("Against");
+
+  if(typeof forUser === 'undefined'){
+    currentDebate.set("For",Parse.User.current());
+    console.log("set current user as FOR");
+  }
+  else if(typeof againstUser === 'undefined') {
+    currentDebate.set("Against",Parse.User.current());
+    console.log("set current user as Against");
+  }
+  else {
+    console.log("ERROR -- debate : " + debate.id + " has a defined for and againstUser, but a user was still able to click the debate button");
+  }
+  return currentDebate.save({}).then(
+    function(debate){
+      console.log("Saved debate " + currentDebate.id);
+      return currentDebate;
+    },
+    function(error){
+      console.log('error.message');
+    });
+    return this;
+}
+
 // posts argument to current debate
+// could be moved to ArgumentService
 this.postArgument = function(argument) {
   // should be in an Argument service
   var Argument = Parse.Object.extend("Argument");
   var _argument = new Argument();
   _argument.set("title", argument.title);
-  _argument.set("description", argument.description);
+  _argument.set("discussion", argument.discussion);
   // sources should be an array, but for now is a String in Parse
   _argument.set("sources", argument.sources);
 
@@ -29,12 +60,14 @@ this.postArgument = function(argument) {
       // so we need to check if they are null before accessing its id
       var forUser = currentDebate.get("For");
       var againstUser = currentDebate.get("Against");
+      // forUser exists, check if forUser is current User
       if(typeof forUser !== 'undefined' &&  Parse.User.current().id == forUser.id){
           currentDebate.add("forArgs",_argument);
           currentDebate.set("turn", "Against");
           currentDebate.save();
           console.log("added to forArgs and set turn to Against");
       }
+      // againstUser exists, check if againstUser is current User
       else if (typeof againstUser !== 'undefined' && Parse.User.current().id == againstUser.id) {
         currentDebate.add("againstArgs",_argument);
         currentDebate.set("turn", "For");
@@ -43,14 +76,13 @@ this.postArgument = function(argument) {
       }
 
       else {
-        console.log("ERROR -- current debate : " + currentDebate.get("id")
+        console.log("ERROR -- current debate : " + currentDebate.id 
           +" has For and Against users undefined");
       }
       return _argument;
     },
     function(error) {
-      // saving the object failed.
-      console.log('New debate created with objectId: ' + _debate.id);
+      console.log(error.message);
   });
   return this;
 }
@@ -90,43 +122,43 @@ this.getDebates = function() {
     return this;
   }
   
-  // creates a debate with debate model from CreateDebateDialogCtrl
+// creates a debate with debate model from CreateDebateDialogCtrl
 this.createDebate = function(debate) {
-    // extend Debate class
-    var Debate = Parse.Object.extend("Debate");
-    // Initialize a new Debate object and assign all relevant fields
-    var _debate = new Debate();
-    _debate.set("title", debate.title);
-    _debate.set("description", debate.description);
-    _debate.set("createdBy", Parse.User.current());
-    // assign current user to appropriate side of the debate
-    // the turn will be the side of current user because he will
-    // be the one to make the first argument in the debate
-    if(debate.side == "For") {
-      _debate.set("For", Parse.User.current());
-      _debate.set("turn", "For");
-    }
-    else if(debate.side == "Against"){
-      _debate.set("Against", Parse.User.current());
-      _debate.set("turn", "Against");
-    }
-    else {
-      // TODO add some error message if received side is not Against or For. 
-      console.log("ERROR - DebateService received a debate with side : " + debate.side);
-    }
-
-    // save this debate as a promise
-    return _debate.save({}).then(
-      function(object) {
-        // the object was saved.
-        console.log('New debate created with objectId: ' + _debate.id);
-        return _debate;
-      },
-      function(error) {
-        // saving the object failed.
-        console.log('New debate created with objectId: ' + _debate.id);
-    });
-    return this;
+  // extend Debate class
+  var Debate = Parse.Object.extend("Debate");
+  // Initialize a new Debate object and assign all relevant fields
+  var _debate = new Debate();
+  _debate.set("title", debate.title);
+  _debate.set("description", debate.description);
+  _debate.set("createdBy", Parse.User.current());
+  // assign current user to appropriate side of the debate
+  // the turn will be the side of current user because he will
+  // be the one to make the first argument in the debate
+  if(debate.side == "For") {
+    _debate.set("For", Parse.User.current());
+    _debate.set("turn", "For");
   }
+  else if(debate.side == "Against"){
+    _debate.set("Against", Parse.User.current());
+    _debate.set("turn", "Against");
+  }
+  else {
+    // TODO add some error message if received side is not Against or For. 
+    console.log("ERROR - DebateService received a debate with side : " + debate.side);
+  }
+
+  // save this debate as a promise
+  return _debate.save({}).then(
+    function(object) {
+      // the object was saved.
+      console.log('New debate created with objectId: ' + _debate.id);
+      return _debate;
+    },
+    function(error) {
+      // saving the object failed.
+      console.log('error.message');
+  });
+  return this;
+} 
 
 });

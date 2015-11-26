@@ -1,33 +1,23 @@
 var myApp = angular.module('myApp');
-myApp.controller('DebateCtrl',['DebateService', '$routeParams','$scope', function(DebateService, $routeParams, $scope){
+myApp.controller('DebateCtrl',['DebateService', '$routeParams','$scope','$timeout','$location', function(DebateService, $routeParams, $scope,$timeout,$location){
 	
-	// TODO : A more concrete Debate Model
-	// Debate model will need to have awareness of round
-	// Current debate model holds against arg and for arg
-	// this is a temporary placeholder for values that have not been initialized yet
-	// $scope.debate = {
-	// 	turn : "",
-	// 	title : "",
-	// 	againstArg : {
-	// 		title : 'Argument Title [AGAINST]',
-	// 		discussion : 'Argument discussion [AGAINST]'
-	// 	},
-	// 	forArg : {
-	// 		title : 'Argument Title [FOR]',
-	// 		discussion : 'Argument discussion [FOR]'
-	// 	}
-	// }
+	// $scope.debate is updated from init()
+	$scope.maxArg = 3;
 
-	// Let the Current User join this debate
-	this.join = function() {
-		console.log("will join the debate ....");
+	// allow current user to join the debate
+	$scope.join = function() {
+		DebateService.joinDebate()
+			.then(function(debate){
+				$scope.$apply(function(){
+					$scope.debate = debate;
+				})
+			})
 	}
 
 	// initializes the Debate view based on the Debate associated with the current url
-	// Currently, urls have one param for Title
-	// Assuming that all titles are unique, find the Debate associated with the title
-	// and display that Debate
-	this.init = function() {
+	// Currently, urls have one param for id
+	// Get the id param and get debate with that id
+	$scope.init = function() {
 		var debateId = $routeParams.param;
 		DebateService.getDebateById(debateId)
 			.then(function(debate){
@@ -37,5 +27,5 @@ myApp.controller('DebateCtrl',['DebateService', '$routeParams','$scope', functio
 			});
 	}
 
-	this.init();
+	$scope.init();
 }]);
