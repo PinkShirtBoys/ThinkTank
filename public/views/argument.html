@@ -6,7 +6,10 @@
 			<md-card-content>
 				<h2 class="md-title">{{arg.get('title')}}</h2>	
 				<p> {{arg.get('discussion')}} </p>
-				<p> {{arg.get('sources')}} </p>
+		        <md-divider>
+		        	<p> <b>Sources</b> </p>
+					<p> {{arg.get('sources')}} </p>
+		    	</md-divider>
 			</md-card-content>
 			<div class="md-actions" layout="row" layout-align="end center">
         		<md-button>
