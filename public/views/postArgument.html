@@ -2,23 +2,32 @@
 <body>
 	<div ng-controller = "PostArgumentCtrl as ctrl">
 
-	<!-- Argument and sources -->
-	<md-input-container>
-		<label>Argument</label>
-		<textarea ng-model = "ctrl.argument.title"> </textarea>
-	</md-input-container>
+	<form role="form" name = "postArgumentForm">
+		<!-- Argument and sources -->
+		<md-input-container>
+			<label>Argument</label>
+			<textarea ng-model = "ctrl.argument.title" required> </textarea>
+		</md-input-container>
 
-	<md-input-container>
-		<label>Argument Discussion</label>
-		<textarea ng-model = "ctrl.argument.discussion"></textarea>
-	</md-input-container>
+		<md-input-container>
+			<label>Argument Discussion</label>
+			<textarea ng-model = "ctrl.argument.discussion" required></textarea>
+		</md-input-container>
 
-	<md-input-container>
-		<label>Sources</label>
-		<textarea ng-model = "ctrl.argument.sources"></textarea>
-	</md-input-container>
+		<!-- TODO : User should enter sources in a list input-->
+		<md-input-container>
+			<label>Sources</label>
+			<textarea ng-model = "ctrl.argument.sources" required></textarea>
+		</md-input-container>
 
-	<md-button class="md-raised md-primary btn-block" ng-click = "ctrl.postArgument()" >Submit</md-button>
+		<md-button 
+			class="md-raised md-primary btn-block" 
+			ng-click = "ctrl.postArgument()" 
+			ng-disabled ="postArgumentForm.$invalid">
+			Submit
+		</md-button>
+
+	</form>
 
 	</div>
 </body>

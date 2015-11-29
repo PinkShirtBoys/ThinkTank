@@ -1,20 +1,25 @@
 <html>
 
 <div ng-controller = "SignInDialogCtrl as ctrl">
-	<form role="form">
+	<form role="form" name = "signInForm">
 
 		<md-input-container>
   			<label>Email</label>
-  			<input type="email" id ="email" ng-model = "ctrl.model.email">
+  			<input type="email" id ="email" ng-model = "ctrl.model.email" required>
 		</md-input-container>
 
 		<md-input-container>
   			<label> Password </label>
-  			<input type = "text" id = "pwd", ng-model = "ctrl.model.password">
+  			<input type = "text" id = "pwd", ng-model = "ctrl.model.password" required>
 		</md-input-container>
 
 		<!-- type = "submit" ? -->
-		<md-button class="md-raised md-primary btn-block" ng-click = "ctrl.submit()" >Submit</md-button>
+		<md-button 
+			class="md-raised md-primary btn-block" 
+			ng-click = "ctrl.submit()" 
+			ng-disabled ="signInForm.$invalid">
+			Submit
+		</md-button>
 
 	</form>
 </div>

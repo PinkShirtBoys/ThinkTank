@@ -1,36 +1,42 @@
 <html>
 
 <div ng-controller = "CreateDebateDialogCtrl as ctrl">
-	<form role="form">
+	<form role="form" name = "debateForm">
 
 		<!-- title -->
 		<md-input-container>
   			<label> Title </label>
-  			<input type="text" id ="title" ng-model = "ctrl.model.title">
+  			<input type="text" id ="title" ng-model = "ctrl.model.title" required>
 		</md-input-container>
 
 		<!-- description -->
 		<md-input-container>
     		<label>Description</label>
-    		<textarea ng-model = "ctrl.model.description"></textarea>
+    		<textarea ng-model = "ctrl.model.description" required></textarea>
   		</md-input-container>
 
-		<!-- Opponent -->
-		<md-input-container>
+  		<!-- currently do not have functionality to support sending invites to an opponent -->
+		<!-- Opponent 
+ 		<md-input-container>
   			<label> Opponent </label>
-  			<input type="text" id ="opponent" ng-model = "ctrl.model.opponent">
-		</md-input-container>
+  			<input type="text" id ="opponent" ng-model = "ctrl.model.opponent" required>
+		</md-input-container> -->
 
 		<!-- TODO : 
 			* Form currently can not be submitted with enter key if user has last clicked on a radio button. The user would have to click on an input and then be able to press enter to submit. 
 			* Find a way to enable enter to work. 
 		-->
-		<md-radio-group ng-model="ctrl.model.side">
+		<md-radio-group ng-model="ctrl.model.side" required>
 	      	<md-radio-button value="For" class="md-primary">For</md-radio-button>
 			<md-radio-button value="Against"> Against </md-radio-button>
     	</md-radio-group>
 
-		<md-button class="md-raised md-primary btn-block" ng-click = "ctrl.createDebate()" >Submit</md-button>
+		<md-button 
+			class="md-raised md-primary btn-block" 
+			ng-click = "ctrl.createDebate()"
+			ng-disabled ="debateForm.$invalid">
+			Submit
+		</md-button>
 
 	</form>
 </div>
