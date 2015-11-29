@@ -15,14 +15,21 @@
 			forArgs : {{debate.get('forArgs')}} <br>
 			againstArgs : {{debate.get('againstArgs')}} <br> -->
 
-
 			<!-- show the join button only if the current user is logged in, debate is not full, and current user does not belong to the debate. -->
 			<div ng-show = "$root.currentUser && (!debate.get('For') || !debate.get('Against')) && ($root.currentUser.id != debate.get('For').id && $root.currentUser.id != debate.get('Against').id)">
 				<md-button ng-click = "join()" class="btn btn-default" type="submit">Join</button>
 			</div>
 
+			<!-- TODO : a way without <br> !-->
+			<br> <br> <br>
+
 			<h2 class="md-title text-center">{{debate.get('title')}}</h2>
 			<p class = "text-center"> {{debate.get('description')}} </p>
+
+			<!-- user should vote on a side once the debate is finished -->
+			<div ng-show = "debate.get('againstArgs').length == maxArg && debate.get('forArgs').length == maxArg">
+				<div ng-include src = "'views/vote.html'"> </div>
+			</div>
 
 			<!-- For and Against cards are flexed against each other in one row-->
 			<!-- the cards that show arguments will have to can be dynamic using ng-repeat -->

@@ -1,0 +1,38 @@
+<html>
+<div ng-controller = "VoteCtrl as ctrl">
+	<md-card>
+		<p class = "text-center h3"> Time To Vote </p>
+		
+
+		<!-- show voteForm if user is logged in -->
+		<div ng-show ="$root.currentUser">
+			<form role="form" name = "voteForm">
+
+				<p class = "text-center"> 
+					Which side had the most compelling arguments?
+				</p>
+				<!-- each side on a radio button -->
+				<md-radio-group ng-model= "ctrl.side" required>
+			      	<md-radio-button value="For" class="md-primary">For</md-radio-button>
+					<md-radio-button value="Against"> Against </md-radio-button>
+		    	</md-radio-group>
+
+				<md-button 
+					class="md-raised md-primary btn text-center" 
+					ng-disabled ="voteForm.$invalid"
+					ng-click = "ctrl.vote()">
+					Vote
+				</md-button>
+
+			</form>
+		</div>
+
+		<div ng-show = "!$root.currentUser">
+			<p class = "text-center"> 
+				Please Log In to vote
+			</p>
+		</div>
+
+	</md-card>
+</div>
+</html>
