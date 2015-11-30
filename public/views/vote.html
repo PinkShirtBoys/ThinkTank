@@ -3,11 +3,12 @@
 	<md-card>
 		<p class = "text-center h3"> Time To Vote </p>
 		
+		<!-- show voteForm if user is logged in 
+			TODO : if user has already voted, just show vote results
+		-->
 
-		<!-- show voteForm if user is logged in -->
 		<div ng-show ="$root.currentUser">
 			<form role="form" name = "voteForm">
-
 				<p class = "text-center"> 
 					Which side had the most compelling arguments?
 				</p>
@@ -17,13 +18,12 @@
 					<md-radio-button value="Against"> Against </md-radio-button>
 		    	</md-radio-group>
 
-				<md-button 
+		    	<md-button 
 					class="md-raised md-primary btn text-center" 
 					ng-disabled ="voteForm.$invalid"
 					ng-click = "ctrl.vote()">
 					Vote
 				</md-button>
-
 			</form>
 		</div>
 
@@ -32,6 +32,20 @@
 				Please Log In to vote
 			</p>
 		</div>
+			
+		<p class = "text-center">
+			Results
+		</p>
+		<!-- http://jtblin.github.io/angular-chart.js/#pie-chart -->
+		<!-- TODO : add a legend?-->
+		<canvas id="pie" 
+			class="chart chart-pie"
+			chart-data="[
+				debate.get('forVoteCount'),
+				debate.get('againstVoteCount')
+			]" 
+			chart-labels="['For','Against']">
+		</canvas> 
 
 	</md-card>
 </div>

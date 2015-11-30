@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',['ngRoute','ngMaterial','ngDialog'])
+var myApp = angular.module('myApp',['ngRoute','ngMaterial','ngDialog',"chart.js"])
 .run(function($rootScope,$mdMedia) {
 
   $rootScope.currentUser = Parse.User.current();

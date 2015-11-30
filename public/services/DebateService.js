@@ -8,6 +8,41 @@ this.getCurrentDebate = function() {
   return currentDebate;
 }
 
+this.currentUserHasVoted = function() {
+  if(currentDebate && Parse.User.current()) {
+    var voters = currentDebate.get('voters');
+    for(i = 0; i < voters.length; i++) {
+      if(voters[i].id == Parse.User.current().id) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
+// For or Against values
+this.voteOnSide = function(side) {
+  if(side == 'For') {
+    currentDebate.set("forVoteCount", currentDebate.get('forVoteCount') + 1);
+  }
+  else if(side == 'Against') {
+    currentDebate.set("againstVoteCount", currentDebate.get('againstVoteCount') + 1);
+  }
+  else {
+    console.log("ERROR -- trying to vote on debate : " + debate.id + " that has side : " + side);
+  }
+  currentDebate.addUnique("voters",Parse.User.current());
+  return currentDebate.save({}).then(
+    function(debate) {
+      console.log("Saved debate " + currentDebate.id);
+      return currentDebate;
+    },
+    function(error){
+      console.log('error.message');
+    });
+    return this;
+}
+
 // add current user to the debate
 // current user will be set to For or Against
 // assumes that UI will not let a current debator click the join button
@@ -131,6 +166,9 @@ this.createDebate = function(debate) {
   _debate.set("title", debate.title);
   _debate.set("description", debate.description);
   _debate.set("createdBy", Parse.User.current());
+  // set vote counts to 0 because Parse sets them to undefined by default
+  _debate.set("forVoteCount",0);
+  _debate.set("againstVoteCount",0);
   // assign current user to appropriate side of the debate
   // the turn will be the side of current user because he will
   // be the one to make the first argument in the debate

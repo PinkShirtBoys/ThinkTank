@@ -1,10 +1,9 @@
 var myApp = angular.module('myApp');
-myApp.controller('VoteCtrl',[function(){
+myApp.controller('VoteCtrl',['$scope','DebateService',function($scope, DebateService){
 
-	// TODO vote with DebateService
-	// keep track of timelimit and a person can only vote once
+	// $scope.debate contains current debate
 	this.vote = function() {
-		console.log("TODO : Will add vote functionality");
+		DebateService.voteOnSide(this.side);
 	}
 
 }]);
