@@ -9,14 +9,14 @@ this.getCurrentDebate = function() {
 }
 
 this.currentUserHasVoted = function() {
-  if(currentDebate && Parse.User.current()) {
     var voters = currentDebate.get('voters');
-    for(i = 0; i < voters.length; i++) {
-      if(voters[i].id == Parse.User.current().id) {
-        return true;
+    if(voters) { // avoid the error if voters is empty
+      for(i = 0; i < voters.length; i++) {
+        if(voters[i].id == Parse.User.current().id) {
+          return true;
+        }
       }
-    }
-    return false;
+      return false;
   }
 }
 

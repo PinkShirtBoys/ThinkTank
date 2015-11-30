@@ -1,9 +1,15 @@
 var myApp = angular.module('myApp');
-myApp.controller('VoteCtrl',['$scope','DebateService',function($scope, DebateService){
+myApp.controller('VoteCtrl',['DebateService',function(DebateService){
 
-	// $scope.debate contains current debate
 	this.vote = function() {
 		DebateService.voteOnSide(this.side);
+		this.side = "";
+	}
+
+	this.currentUserHasVoted = function() {
+		if(Parse.User.current()){
+			return DebateService.currentUserHasVoted();
+		}
 	}
 
 }]);
