@@ -18,11 +18,20 @@ myApp.config(['$routeProvider',
       controller:'HomeCtrl',
       controllerAs:''
     }).
-    //TODO : 
     when('/Debate/:param',{
       templateUrl:'views/debate.html',
       controller:'DebateCtrl',
-      controllerAs:''
+      // calling DebateService.getDebateById as a resolve so that
+      // we can get the current debate from Parse before the controller is loaded
+      // debate.html has many nested views that will need to interact with 
+      // the current debate, so we need to get it before DebateCtrl is loaded or the 
+      // nested view controllers may get null properties of the current debate object
+      resolve : {
+        currentDebate : ['$route','DebateService',function($route,DebateService){
+          var param = $route.current.params.param;
+          return DebateService.getDebateById(param);
+        }]
+      }
     }).
     otherwise({
       redirectTo:'/'
