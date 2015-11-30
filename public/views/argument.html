@@ -11,9 +11,16 @@
 					<p> {{arg.get('sources')}} </p>
 		    	</md-divider>
 			</md-card-content>
+
 			<div class="md-actions" layout="row" layout-align="end center">
-        		<md-button>
+				<!-- upvote the current argument when clicked 
+					Disabled when user is signed out or when user has already voted
+				-->
+        		<md-button 
+        			ng-click = "upvoteArg()"
+        			ng-disabled ="!$root.currentUser || currentUserHasVoted()">
     				<i class="material-icons">thumb_up</i>
+    				{{arg.get('upvoteCount')}}
 				</md-button>
       		</div>
 		</md-card>

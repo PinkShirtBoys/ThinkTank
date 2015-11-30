@@ -9,14 +9,14 @@ this.getCurrentDebate = function() {
 }
 
 this.currentUserHasVoted = function() {
-    var voters = currentDebate.get('voters');
-    if(voters) { // avoid the error if voters is empty
-      for(i = 0; i < voters.length; i++) {
-        if(voters[i].id == Parse.User.current().id) {
-          return true;
-        }
+  var voters = currentDebate.get('voters');
+  if(voters) { // avoid the error if voters is empty
+    for(i = 0; i < voters.length; i++) {
+      if(voters[i].id == Parse.User.current().id) {
+        return true;
       }
-      return false;
+    }
+    return false;
   }
 }
 
@@ -81,6 +81,7 @@ this.postArgument = function(argument) {
   var _argument = new Argument();
   _argument.set("title", argument.title);
   _argument.set("discussion", argument.discussion);
+  _argument.set("upvoteCount", 0);
   // sources should be an array, but for now is a String in Parse
   _argument.set("sources", argument.sources);
 
