@@ -27,7 +27,7 @@
 			<p class = "text-center"> {{debate.get('description')}} </p>
 
 			<!-- user should vote on a side once the debate is finished -->
-			<div ng-show = "debate.get('againstArgs').length == maxArg && debate.get('forArgs').length == maxArg">
+			<div ng-show = "debate.get('againstArgs').length == debate.get('argLimit') && debate.get('forArgs').length == debate.get('argLimit')">
 				<div ng-include src = "'views/vote.html'"> </div>
 			</div>
 
@@ -48,12 +48,12 @@
 					</div>
 					<!-- postArgument if on For turn, current user is For user and if 
 					there are less than max amount -->
-					<div ng-if ="debate.get('turn') == 'For' && $root.currentUser.id == debate.get('For').id && $root.currentUser.id && (!debate.get('forArgs') || debate.get('forArgs').length < maxArg)">
+					<div ng-if ="debate.get('turn') == 'For' && $root.currentUser.id == debate.get('For').id && $root.currentUser.id && (!debate.get('forArgs') || debate.get('forArgs').length < debate.get('argLimit'))">
 						<div ng-include src = "'views/postArgument.html'"> </div>
 					</div>
 
-					<div ng-if ="debate.get('forArgs').length == maxArg">
-						Maximum {{maxArg}} arguments
+					<div ng-if ="debate.get('forArgs').length == debate.get('argLimit')">
+						Maximum {{debate.get('argLimit')}} arguments
 					</div>
 
 	  			</div>
@@ -71,12 +71,12 @@
 					</div>
 					<!-- postArgument if on Against turn, current user is Against user and if 
 					there are less than max amount -->
-					<div ng-if ="debate.get('turn') == 'Against' && $root.currentUser.id == debate.get('Against').id && $root.currentUser.id &&(!debate.get('againstArgs') || debate.get('againstArgs').length < maxArg)">
+					<div ng-if ="debate.get('turn') == 'Against' && $root.currentUser.id == debate.get('Against').id && $root.currentUser.id &&(!debate.get('againstArgs') || debate.get('againstArgs').length < debate.get('argLimit'))">
 						<div ng-include src = "'views/postArgument.html'"> </div>
 					</div>
 
-					<div ng-if ="debate.get('againstArgs').length == maxArg">
-						Maximum {{maxArg}} arguments
+					<div ng-if ="debate.get('againstArgs').length == debate.get('argLimit')">
+						Maximum {{debate.get('argLimit')}} arguments
 					</div>
 
 	  			</div>

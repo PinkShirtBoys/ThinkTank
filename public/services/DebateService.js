@@ -167,6 +167,9 @@ this.createDebate = function(debate) {
   _debate.set("title", debate.title);
   _debate.set("description", debate.description);
   _debate.set("createdBy", Parse.User.current());
+  // currently hardcoding argLimit to be 3.
+  // In future it will be set by user in CreateDebateDialog
+  _debate.set("argLimit",3);
   // set vote counts to 0 because Parse sets them to undefined by default
   _debate.set("forVoteCount",0);
   _debate.set("againstVoteCount",0);

@@ -1,7 +1,6 @@
 var myApp = angular.module('myApp');
 myApp.controller('DebateCtrl',['DebateService','$scope','$timeout','currentDebate', function(DebateService, $scope,$timeout,currentDebate){
 	
-	$scope.maxArg = 3;
 	// currentDebate comes from resolve that calls DebateService.getDebateById(id)
 	$scope.debate = currentDebate;
 
