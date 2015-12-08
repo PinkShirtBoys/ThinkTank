@@ -1,8 +1,16 @@
 var myApp = angular.module('myApp');
-myApp.controller('DebateCtrl',['DebateService','$scope','$timeout','currentDebate', function(DebateService, $scope,$timeout,currentDebate){
+myApp.controller('DebateCtrl',['DebateService','$scope','$location','currentDebate', function(DebateService, $scope,$location,currentDebate){
 	
-	// currentDebate comes from resolve that calls DebateService.getDebateById(id)
-	$scope.debate = currentDebate;
+	$scope.init = function() {
+		// currentDebate comes from resolve that calls DebateService.getDebateById(id)
+		if(currentDebate){
+			$scope.debate = currentDebate;	
+		}
+		else {
+			console.log("debate does not exist");
+			$location.url('/');
+		}
+	}
 
 	// allow current user to join the debate
 	$scope.join = function() {
@@ -13,4 +21,7 @@ myApp.controller('DebateCtrl',['DebateService','$scope','$timeout','currentDebat
 				})
 			})
 	}
+
+	$scope.init();
+
 }]);

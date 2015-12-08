@@ -129,6 +129,8 @@ this.getDebateById = function(id) {
   var query = new Parse.Query(Debate);
   query.equalTo("objectId", id);
   return query.find().then(function(debate){
+    console.log(debate);
+    console.log(debate[0]);
     currentDebate = debate[0];
     return debate[0];
   });
