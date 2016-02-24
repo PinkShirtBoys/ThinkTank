@@ -3,6 +3,10 @@
   "description": "The next online think tank",
   "dependencies": {
     "express": "^4.2.0",
-    "parse":"1.6.9"
+    "parse": "1.6.9",
+    "parse-server": "^2.1.2"
+  },
+  "scripts" : {
+  	"start": "node server/server.js"
   }
 }

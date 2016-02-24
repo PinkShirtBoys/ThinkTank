@@ -9,6 +9,7 @@ var myApp = angular.module('myApp',['ngRoute','ngMaterial','ngDialog',"chart.js"
 // ParseCredentials will only be used in app.js
 // If ParseCredentials must be used in mulitple places, put ParseCredentials in a myApp.constant()
 Parse.initialize(ParseCredentials.applicationId, ParseCredentials.javascriptKey);
+Parse.serverURL = 'http://localhost:5000/parse'
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
